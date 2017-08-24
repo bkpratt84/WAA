@@ -1,47 +1,9 @@
 <template>
-    <!-- <div class="container row">
-        <div class="col s3 offset-s4 z-depth-4 card">
-            <form @submit.prevent="login">
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">perm_identity</i>
-                        <input id="email"
-                            type="text"
-                            v-model="email"
-                            required>
-                        <label for="email" class="center-align grey-text darken-4-text">Email</label>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">lock_open</i>
-                        <input id="password"
-                            type="password"
-                            v-model="password"
-                            required>
-                        <label for="password" class="center-align grey-text darken-4-text">Password</label>
-                    </div>
-                </div>
-                <div class="row center-align">
-                    <button class="btn waves-effect waves-light" type="submit">
-                        <i class="material-icons left">done</i>Submit
-                    </button>
-                </div>
-            </form>
-
-            <div v-if="response">
-                <div class="card pink accent-3 error">
-                    <span>{{ response }}</span>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
      <v-container>
         <v-layout row wrap class="mt-5">
             <v-flex sm3 md2 offset-sm4 offset-md5>
                 <v-card class="elevation-15">
-                    <form @submit.prevent="login" @input="$v.form.$touch()">
+                    <form @submit.prevent="login">
                         <v-card-title class="blue darken-4">
                             <h5 class="ma-0 white--text">Login</h5>
                         </v-card-title>
@@ -54,7 +16,10 @@
                                         v-model="form.email"
                                         prepend-icon="account_box"
                                         :error="$v.form.email.$error"
-                                    ></v-text-field>
+                                        :error-messages="($v.form.email.$dirty && !$v.form.email.required) ? 'Email Required.' :
+                                                         ($v.form.email.$dirty && !$v.form.email.email) ? 'Invalid email address.' : []"
+                                        @input="$v.form.email.$touch()"
+                                    ></v-text-field>    
                                 </v-flex>
                             </v-layout>
                             <v-layout row>
@@ -68,11 +33,13 @@
                                         :append-icon-cb="() => (e1 = !e1)"
                                         :type="e1 ? 'password' : 'text'"
                                         :error="$v.form.password.$error"
+                                        :error-messages="($v.form.password.$dirty && !$v.form.password.required) ? 'Password Required.' : []"
+                                        @input="$v.form.password.$touch()"
                                     ></v-text-field>
                                     <!-- <pre>{{ $v.form }}</pre> -->
                                 </v-flex>
                             </v-layout>
-                            <v-layout>
+                             <v-layout> 
                                 <v-flex sm12>
                                     <v-btn
                                         block
@@ -81,7 +48,12 @@
                                         :disabled="$v.form.$invalid"
                                     >Login</v-btn>
                                 </v-flex>
-                            </v-layout>
+                             </v-layout> 
+                            <v-layout v-if="response"> 
+                                <v-flex sm12>
+                                    <div class="red--text text-xs-center">{{ response }}</div>
+                                </v-flex>
+                            </v-layout> 
                         </v-card-text>
                     </form>
                 </v-card>
@@ -91,11 +63,6 @@
 </template>
 
 <<style scoped>
-    .error {
-        width: 100%;
-        padding: 5px 10px 5px 10px;
-        color: #fff;
-    }
     .btn--disabled {
         opacity: 1;
     }
@@ -103,7 +70,6 @@
 
 <style>
       #app {
-        /* background-color: #1e88e5; */
         background-color: #666;
     }  
 </style>
@@ -117,10 +83,10 @@
             return {
                 form: {
                     email: '',
-                    password: '',
-                    response: ''
+                    password: ''
                 },
-                e1: true
+                e1: true,
+                response: ''
             }
         },
         validations: {
