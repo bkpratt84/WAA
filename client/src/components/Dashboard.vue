@@ -1,5 +1,9 @@
 <template>
-  <div>
+   <div>
       DASHBOARD
-  </div>
+  </div> 
+
+   <!-- <v-app>
+     <router-view></router-view> 
+  </v-app>  -->
 </template>

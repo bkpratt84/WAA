@@ -1,17 +1,11 @@
 <template>
-  <div>
-    <!--<appHeader></appHeader>
-
-    <div class="container">
-      <div class="row">
-        <div class="col s12">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>-->
-
+   <!-- <div>
     <router-view></router-view>
-  </div>
+  </div>  -->
+
+   <v-app>
+     <router-view></router-view> 
+  </v-app> 
 </template>
 
 <script>
@@ -35,5 +29,8 @@
 </script>
 
 <style>
-
+     /* body {
+        background-color: #1e88e5;
+        margin: 0;
+    }  */
 </style>

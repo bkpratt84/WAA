@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import Vuetify from 'vuetify';
+import Vuelidate from 'vuelidate'
 import VueRouter from 'vue-router';
 import axios from 'axios';
 
@@ -6,10 +8,14 @@ import App from './App.vue';
 import store from './store/store';
 import { routes } from './routes';
 
-import 'materialize-css/dist/css/materialize.css';
-import 'materialize-css/js/hammer.min.js';
-import 'materialize-css/dist/js/materialize.min.js';
+// import 'materialize-css/dist/css/materialize.css';
+// import 'materialize-css/js/hammer.min.js';
+// import 'materialize-css/dist/js/materialize.min.js';
 
+import 'vuetify/dist/vuetify.min.css';
+
+Vue.use(Vuetify);
+Vue.use(Vuelidate)
 Vue.use(VueRouter);
 Vue.prototype.$http = axios;
 
