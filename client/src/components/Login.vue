@@ -1,5 +1,5 @@
 <template>
-     <v-container>
+     <v-container id="login">
         <v-layout row wrap class="mt-5">
             <v-flex sm3 md2 offset-sm4 offset-md5>
                 <v-card class="elevation-15">
@@ -25,7 +25,7 @@
                             <v-layout row>
                                 <v-flex sm12>
                                     <v-text-field
-                                        id="pw"
+                                        id="password"
                                         label="Password"
                                         v-model="form.password"
                                         prepend-icon="lock"
@@ -62,16 +62,23 @@
     </v-container> 
 </template>
 
-<<style scoped>
+<style scoped>
     .btn--disabled {
         opacity: 1;
+    }
+
+    div#root.application.application--light {
+        background-color: blue;
+    }
+    #root {
+        background-color: #303030;
     }
 </style>
 
 <style>
-      #app {
-        background-color: #666;
-    }  
+    div#root.application.application--light {
+        background-color: #303030;
+    }
 </style>
 
 <script>
@@ -108,8 +115,8 @@
             login() {
                 this.response = '';
                 let req = {
-                    email: this.email,
-                    password: this.password
+                    email: this.form.email,
+                    password: this.form.password
                 };
                 
                 this.$http.post('user/authenicate', req)
@@ -117,13 +124,13 @@
                     if (response.status === 200 && response.data.token) {
                         this.setToken(response.data.token);
                         this.setUser(response.data.user);
-                        this.$router.push('/');
+                        this.$router.push('/dashboard');
                     } else {
                         this.response = response.data.error.message;
                     }
                 }, error => {
-                        console.log(error);
-                   this.response = 'Unable to connect to server.';
+                    console.log(error);
+                    this.response = 'Unable to connect to server.';
                 });
             }
         }

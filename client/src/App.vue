@@ -1,12 +1,18 @@
 <template>
-   <!-- <div>
-    <router-view></router-view>
-  </div>  -->
-
-   <v-app>
+   <v-app id="root" >
      <router-view></router-view> 
   </v-app> 
+
+  <!-- <div id="app">
+    <router-view></router-view> 
+  </div> -->
 </template>
+
+<style>
+  #root {
+    height: 100%;
+  }
+</style>
 
 <script>
   import Header from './components/Header.vue';
@@ -27,10 +33,3 @@
     }
   }
 </script>
-
-<style>
-     /* body {
-        background-color: #1e88e5;
-        margin: 0;
-    }  */
-</style>

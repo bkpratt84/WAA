@@ -1,6 +1,7 @@
 import Login from './components/Login.vue';
-import Dashboard from './components/Dashboard.vue'
-import PageNotFound from './components/PageNotFound.vue'
+import Home from './components/Home.vue';
+import Dashboard from './components/Dashboard/Dashboard.vue';
+import PageNotFound from './components/PageNotFound.vue';
 
 export const routes = [
     {
@@ -13,11 +14,22 @@ export const routes = [
     },
     {
         path: '/',
-        name: 'dashboard',
-        component: Dashboard,
+        name: 'home',
+        component: Home,
         meta: {
             auth: true
-        }
+        },
+        children: [
+            {
+                path: 'dashboard',
+                name: 'dashboard',
+                component: Dashboard,
+                meta: {
+                    auth: true,
+                    description: 'Overview'
+                }
+            }
+        ]
     },
     {
         path: '*',
