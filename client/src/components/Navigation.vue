@@ -1,5 +1,4 @@
 <template>
-    <v-app class="sidebar">
         <v-navigation-drawer absolute persistent light :mini-variant.sync="mini" v-model="drawer" overflow>
             <v-toolbar flat class="transparent">
                 <v-list class="pa-0">
@@ -56,11 +55,10 @@
             </v-list>
         </v-navigation-drawer>
 
-    <v-toolbar fixed class="indigo darken-4" dark>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Wreaths Across America</v-toolbar-title>
-      </v-toolbar> 
-    </v-app>
+        <!-- <v-toolbar fixed class="indigo darken-4" dark>
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-title>Wreaths Across America</v-toolbar-title>
+      </v-toolbar>  -->
 </template>
 
 <script>
