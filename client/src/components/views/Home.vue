@@ -43,6 +43,7 @@
             <v-list-tile
               :key="i"
               v-else
+              :to="item.href"
             >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
@@ -79,12 +80,13 @@
     data () {
       return {
         items: [
-          { icon: 'location_city', text: "Cemetery's" },
+          { icon: 'dashboard', text: 'Dashboard', href: '/' },
+          { icon: 'location_city', text: "Cemeteries", href: '/veterans' },
           { icon: 'people', text: 'Customers' },
           { icon: 'receipt', text: 'Orders' },
           { icon: 'local_hospital', text: 'Veterans' },
         ],
-        drawer: false,
+        drawer: true,
         mini: false,
         right: null
       }

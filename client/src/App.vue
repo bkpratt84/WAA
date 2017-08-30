@@ -1,11 +1,7 @@
 <template>
    <v-app id="root" >
-     <router-view></router-view> 
+      <router-view></router-view>  
   </v-app> 
-
-  <!-- <div id="app">
-    <router-view></router-view> 
-  </div> -->
 </template>
 
 <style>
@@ -15,12 +11,7 @@
 </style>
 
 <script>
-  import Header from './components/Header.vue';
-
   export default {
-    components: {
-      appHeader: Header
-    },
     created() {
       let token = localStorage.getItem('token');
       let user = localStorage.getItem('user');

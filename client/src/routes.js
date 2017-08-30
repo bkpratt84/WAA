@@ -1,7 +1,9 @@
-import Login from './components/Login.vue';
-import Home from './components/Home.vue';
-import Dashboard from './components/Dashboard/Dashboard.vue';
-import PageNotFound from './components/PageNotFound.vue';
+import Login from './components/views/Login.vue';
+import Home from './components/views/Home.vue';
+import PageNotFound from './components/views/PageNotFound.vue';
+
+import Dashboard from './components/views/Dashboard.vue';
+import Veterans from './components/views/Veterans.vue';
 
 export const routes = [
     {
@@ -27,6 +29,14 @@ export const routes = [
                 meta: {
                     auth: true,
                     description: 'Overview'
+                }
+            },
+            {
+                path: 'veterans',
+                name: 'veterans',
+                component: Veterans,
+                meta: {
+                    auth: true
                 }
             }
         ]
