@@ -1,6 +1,6 @@
 <template>
     <v-container class="pa-0">
-        DASHBOARD
+        <h4>DASHBOARD</h4>
         <!-- <v-layout row>
             <v-flex sm6>
                 <h5>

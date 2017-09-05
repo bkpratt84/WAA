@@ -18,7 +18,7 @@
             </v-list-tile>
           </v-list>
         </v-toolbar>
-
+        
         <v-list dense>
           <template v-for="(item, i) in items">
             <v-layout
@@ -40,10 +40,28 @@
               class="my-4"
               :key="i"
             ></v-divider>
+
             <v-list-tile
               :key="i"
-              v-else
+              v-else-if="item.href && !item.function"
               :to="item.href"
+              exact
+            >
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>
+                  {{ item.text }}
+                </v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile
+              :key="i"
+              v-else-if="item.function"
+              :to="item.href"
+              @click="item.function"
             >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
@@ -71,24 +89,42 @@
     </v-app>
 </template>
 
-<style>
+<style scoped>
 
 </style>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     data () {
       return {
         items: [
           { icon: 'dashboard', text: 'Dashboard', href: '/' },
-          { icon: 'location_city', text: "Cemeteries", href: '/veterans' },
-          { icon: 'people', text: 'Customers' },
-          { icon: 'receipt', text: 'Orders' },
-          { icon: 'local_hospital', text: 'Veterans' },
+          { icon: 'location_city', text: "Cemeteries", href: '/cemeteries' },
+          { icon: 'people', text: 'Customers', href: '/customers' },
+          { icon: 'receipt', text: 'Orders', href: '/orders' },
+          { icon: 'local_hospital', text: 'Veterans', href: '/veterans' },
+          { divider: true },
+          { icon: 'exit_to_app', text: 'Sign Out', href: '', function: this.logout }
         ],
         drawer: true,
         mini: false,
         right: null
+      }
+    },
+    methods: {
+      ...mapActions({
+          vLogout: 'logout'
+      }),
+      logout() {
+        this.vLogout()
+          .then(r => {
+            this.$router.push('/logout');
+          })
+          .catch(r => {
+            alert('Failed to sign out, try again!');
+          })
       }
     }
   }

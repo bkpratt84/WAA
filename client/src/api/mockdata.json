@@ -1,0 +1,15 @@
+{
+    "veterans" : [
+        {
+            "firstName" : "John",
+            "middleName" : "Alan",
+            "lastName" : "Doe",
+            "birthDate" : "1/1/1920",
+            "deathDate" : "2/1/1960",
+            "branch" : "Army",
+            "rank" : "pvc",
+            "cemetery" : "Arlington",
+            "comments" : "Needs a new marker"
+        }
+    ]
+}

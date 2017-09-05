@@ -16,7 +16,7 @@ const mutations = {
         state.user = data;
         localStorage.setItem('user', data);
     },
-    CLEAR_USER(state, data) {
+    CLEAR_USER(state) {
         state.user = null;
         localStorage.removeItem('user');
     }
@@ -34,6 +34,13 @@ const actions = {
     },
     clearUser: ({commit}) => {
         commit('CLEAR_USER');
+    },
+    logout: ({commit}) => {
+        new Promise((resolve, reject) => {
+            commit('CLEAR_TOKEN');
+            commit('CLEAR_USER');
+            resolve();
+        })
     }
 };
 
