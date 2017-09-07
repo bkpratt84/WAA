@@ -1,6 +1,6 @@
 <template>
     <v-app id="app" toolbar> 
-      <v-navigation-drawer absolute persistent light :mini-variant.sync="mini" v-model="drawer" overflow>
+      <v-navigation-drawer absolute temporary light v-model="drawer" overflow>
         <v-toolbar flat class="transparent">
           <v-list class="pa-0">
             <v-list-tile avatar tag="div">
@@ -8,7 +8,7 @@
                 <img src="https://randomuser.me/api/portraits/men/85.jpg" />
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title>John Leider</v-list-tile-title>
+                <v-list-tile-title>{{ this.vGetUser.firstName }} {{ this.vGetUser.lastName }}</v-list-tile-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon @click.native.stop="mini = !mini">
@@ -48,7 +48,7 @@
               exact
             >
               <v-list-tile-action>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon class="indigo--text darken-4">{{ item.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
@@ -64,7 +64,7 @@
               @click="item.function"
             >
               <v-list-tile-action>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon class="indigo--text darken-4">{{ item.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
@@ -94,7 +94,7 @@
 </style>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     data () {
@@ -108,10 +108,13 @@
           { divider: true },
           { icon: 'exit_to_app', text: 'Sign Out', href: '', function: this.logout }
         ],
-        drawer: true,
-        mini: false,
-        right: null
+        drawer: false
       }
+    },
+    computed: {
+      ...mapGetters({
+        vGetUser: 'getUser'
+      })
     },
     methods: {
       ...mapActions({

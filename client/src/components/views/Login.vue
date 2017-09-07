@@ -2,7 +2,7 @@
      <v-container id="login">
         <v-layout row wrap class="mt-5">
             <v-flex sm3 md2 offset-sm4 offset-md5>
-                <v-card class="elevation-15">
+                <v-card class="elevation-15 mt-5">
                     <form @submit.prevent="login">
                         <v-card-title class="blue darken-4">
                             <h5 class="ma-0 white--text">Login</h5>
@@ -62,17 +62,16 @@
     </v-container> 
 </template>
 
-<style scoped>
-    .btn--disabled {
+<style>
+    /* .btn--disabled {
         opacity: 1;
     }
-
     div#root.application.application--light {
         background-color: blue;
     }
     #root {
         background-color: #303030;
-    }
+    } */
 </style>
 
 <style>

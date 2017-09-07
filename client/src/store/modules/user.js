@@ -1,6 +1,6 @@
 const state = {
-    user: localStorage.getItem('token'),
-    token: localStorage.getItem('user')
+    user: '',
+    token: ''
 };
 
 const mutations = {
@@ -50,6 +50,9 @@ const getters = {
     },
     getToken: state => {
         return state.token;
+    },
+    getUser: state => {
+        return state.user;
     }
 };
 
